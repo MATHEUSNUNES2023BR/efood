@@ -6,6 +6,7 @@ import thai from '../../assets/images/thai_menu.jpeg'
 import frances from '../../assets/images/fances.jpeg'
 import alemao from '../../assets/images/german.jpeg'
 import ListaRestaurante from '../../components/ListaRestaurante'
+import Hero from '../../components/Hero'
 const restaurantes: ClasseRestaurante[] = [
   {
     id: 1,
@@ -14,7 +15,8 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
     infos: ['Japones', 'Destaque da Semana'],
-    pontuacao: 4.9
+    pontuacao: 4.9,
+    categoria: 'Japonês'
   },
   {
     id: 2,
@@ -23,7 +25,8 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     infos: ['Italiana'],
-    pontuacao: 4.2
+    pontuacao: 4.2,
+    categoria: 'Italiano'
   },
   {
     id: 3,
@@ -32,7 +35,8 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'Descubra a fusão autêntica de sabores do México e Texas. Cada prato é uma explosão de tradições e temperos frescos. TexMex Cantina: onde a paixão pelo sabor é nossa especialidade.',
     infos: ['Mexicano'],
-    pontuacao: 4.7
+    pontuacao: 4.7,
+    categoria: 'Mexicano'
   },
   {
     id: 4,
@@ -41,7 +45,8 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'Desfrute da elegância da culinária francesa em um ambiente sofisticado. Cada refeição celebra sabor, arte e paixão gastronômica. Bistro Francês: onde cada mordida é um deleite para os sentidos.',
     infos: ['Francês'],
-    pontuacao: 4.1
+    pontuacao: 4.1,
+    categoria: 'Frânces'
   },
   {
     id: 5,
@@ -50,7 +55,8 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'Embarque em uma viagem aos aromas exóticos e sabores vibrantes da Tailândia. Nossos pratos autênticos trazem a magia da culinária tailandesa. Taste of Thailand: uma explosão de sabores em cada prato',
     infos: ['Thailandês'],
-    pontuacao: 4.3
+    pontuacao: 4.3,
+    categoria: 'Thailandês'
   },
   {
     id: 6,
@@ -59,10 +65,16 @@ const restaurantes: ClasseRestaurante[] = [
     detalhes:
       'Experimente o melhor da culinária alemã em um ambiente autêntico. Pratos tradicionais combinam sabores robustos e autênticos. Alemanha Gourmet: onde a tradição encontra o sabor em cada refeição.',
     infos: ['Alemão', ' Destaque da Semana'],
-    pontuacao: 4.8
+    pontuacao: 4.8,
+    categoria: 'Alemão'
   }
 ]
 
-const Home = () => <ListaRestaurante restaurantes={restaurantes} />
+const Home = () => (
+  <>
+    <Hero />
+    <ListaRestaurante restaurantes={restaurantes} />
+  </>
+)
 
 export default Home

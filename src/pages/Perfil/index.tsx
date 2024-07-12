@@ -1,6 +1,9 @@
 import ClasseRestaurante from '../../models/ClasseRestaurante'
 import ListaProduto from '../../components/ListaProduto'
 import pizza from '../../assets/images/pizza.png'
+import Header from '../../components/Header'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../components/store'
 const Produtos: ClasseRestaurante[] = [
   {
     id: 1,
@@ -45,6 +48,17 @@ const Produtos: ClasseRestaurante[] = [
       'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
   }
 ]
-const Perfil = () => <ListaProduto Produtos={Produtos}></ListaProduto>
-
+const Perfil = () => {
+  const dados = useSelector(({ headerDados }: RootReducer) => headerDados)
+  return (
+    <>
+      <Header
+        nomeRestaurante={dados.nomeRestaurante}
+        categoria={dados.categoria}
+        imagem={dados.imagem}
+      />
+      <ListaProduto Produtos={Produtos}></ListaProduto>
+    </>
+  )
+}
 export default Perfil

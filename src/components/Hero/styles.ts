@@ -21,4 +21,9 @@ export const HeroFrase = styled.h1`
   color: ${cores.vermelho};
   background: transparent;
   margin-top: 96px;
+  @media (max-width: 576px) {
+    margin-top: 64px;
+    width: 95%;
+    font-size: 32px;
+  }
 `

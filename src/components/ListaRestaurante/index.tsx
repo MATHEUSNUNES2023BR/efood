@@ -15,6 +15,7 @@ const ListaRestaurante = ({ restaurantes }: Props) => (
         pontuacao={r.pontuacao as number}
         detalhes={r.detalhes}
         infos={r.infos as []}
+        categoria={r.categoria}
       />
     ))}
   </ContainerRestaurantes>

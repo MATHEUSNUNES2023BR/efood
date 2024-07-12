@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 import hero from '../../assets/images/hero.png'
-import dolce from '../../assets/images/dolce_vitta.png'
+
+type Props = {
+  Imagem?: string
+}
+
 export const ContainerHeader = styled.header`
   display: grid;
   grid-template-rows: 156px 320px;
@@ -18,8 +22,14 @@ export const HeaderUl = styled.ul`
   color: ${cores.vermelho};
   font-weight: bold;
   font-size: 24px;
+  a {
+    text-decoration: none;
+  }
   .restaurante {
-    text-decoration: underline;
+    margin-left: 10px;
+    color: ${cores.vermelho};
+    padding-bottom: 5px;
+    border-bottom: 1px solid ${cores.vermelho};
   }
   @media (max-width: 576px) {
     display: grid;
@@ -40,12 +50,12 @@ export const HeaderUl = styled.ul`
     }
   }
 `
-export const HeaderApresentacao = styled.div`
+export const HeaderApresentacao = styled.div<Props>`
   z-index: -1;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(${dolce});
+  background-image: url(${({ Imagem }: Props) => Imagem});
   display: flex;
   flex-direction: column;
   justify-content: space-between;

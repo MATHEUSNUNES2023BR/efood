@@ -7,11 +7,19 @@ import {
   HeaderUl
 } from './styles'
 import logo from '../../assets/images/logo.png'
-const Header = () => (
+import { Link } from 'react-router-dom'
+export type Dados = {
+  categoria: string
+  nomeRestaurante: string
+  imagem: string
+}
+const Header = ({ categoria, nomeRestaurante, imagem }: Dados) => (
   <ContainerHeader>
     <HeaderNav>
       <HeaderUl>
-        <li className="restaurante">Restaurantes</li>
+        <Link to="/">
+          <li className="restaurante">Restaurantes</li>
+        </Link>
         <li className="logo">
           <img src={logo} alt="" />
         </li>
@@ -21,9 +29,9 @@ const Header = () => (
       </HeaderUl>
     </HeaderNav>
 
-    <HeaderApresentacao>
-      <HeaderApresentacaoCategoria>Italiana</HeaderApresentacaoCategoria>
-      <HeaderApresentacaoNome>La Dolce Vita Trattoria</HeaderApresentacaoNome>
+    <HeaderApresentacao Imagem={imagem}>
+      <HeaderApresentacaoCategoria>{categoria}</HeaderApresentacaoCategoria>
+      <HeaderApresentacaoNome>{nomeRestaurante}</HeaderApresentacaoNome>
     </HeaderApresentacao>
   </ContainerHeader>
 )

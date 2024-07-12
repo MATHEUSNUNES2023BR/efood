@@ -5,13 +5,15 @@ class ClasseRestaurante {
   detalhes: string
   pontuacao?: number
   infos?: string[]
+  categoria?: string
   constructor(
     id: number,
     image: string,
     titulo: string,
     detalhes: string,
     pontuacao: number,
-    infos: string[]
+    infos: string[],
+    categoria?: string
   ) {
     this.id = id
     this.image = image
@@ -19,6 +21,7 @@ class ClasseRestaurante {
     this.detalhes = detalhes
     this.pontuacao = pontuacao
     this.infos = infos
+    this.categoria = categoria
   }
 }
 export default ClasseRestaurante
