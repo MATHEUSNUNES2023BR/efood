@@ -3,8 +3,8 @@ class ClasseRestaurante {
   image: string
   titulo: string
   detalhes: string
-  pontuacao: number
-  infos: string[]
+  pontuacao?: number
+  infos?: string[]
   constructor(
     id: number,
     image: string,

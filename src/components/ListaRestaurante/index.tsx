@@ -12,9 +12,9 @@ const ListaRestaurante = ({ restaurantes }: Props) => (
         key={r.id}
         image={r.image}
         titulo={r.titulo}
-        potuacao={r.pontuacao}
+        pontuacao={r.pontuacao as number}
         detalhes={r.detalhes}
-        infos={r.infos}
+        infos={r.infos as []}
       />
     ))}
   </ContainerRestaurantes>

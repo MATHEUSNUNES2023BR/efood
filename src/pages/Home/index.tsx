@@ -1,11 +1,11 @@
-import ClasseRestaurante from '../../../models/ClasseRestaurante'
-import japones from '../../../assets/images/hioki_sushi.png'
-import italiano from '../../../assets/images/dolce_vitta.png'
-import mexican from '../../../assets/images/mexican.jpeg'
-import thai from '../../../assets/images/thai_menu.jpeg'
-import frances from '../../../assets/images/fances.jpeg'
-import alemao from '../../../assets/images/german.jpeg'
-import ListaRestaurante from '../../ListaRestaurante'
+import ClasseRestaurante from '../../models/ClasseRestaurante'
+import japones from '../../assets/images/hioki_sushi.png'
+import italiano from '../../assets/images/dolce_vitta.png'
+import mexican from '../../assets/images/mexican.jpeg'
+import thai from '../../assets/images/thai_menu.jpeg'
+import frances from '../../assets/images/fances.jpeg'
+import alemao from '../../assets/images/german.jpeg'
+import ListaRestaurante from '../../components/ListaRestaurante'
 const restaurantes: ClasseRestaurante[] = [
   {
     id: 1,
@@ -31,7 +31,7 @@ const restaurantes: ClasseRestaurante[] = [
     titulo: 'TexMex Cantina',
     detalhes:
       'Descubra a fusão autêntica de sabores do México e Texas. Cada prato é uma explosão de tradições e temperos frescos. TexMex Cantina: onde a paixão pelo sabor é nossa especialidade.',
-    infos: ['Japones', 'Destaque da Semana'],
+    infos: ['Mexicano'],
     pontuacao: 4.7
   },
   {
@@ -40,7 +40,7 @@ const restaurantes: ClasseRestaurante[] = [
     titulo: 'Bistro Francês',
     detalhes:
       'Desfrute da elegância da culinária francesa em um ambiente sofisticado. Cada refeição celebra sabor, arte e paixão gastronômica. Bistro Francês: onde cada mordida é um deleite para os sentidos.',
-    infos: ['Japones', 'Destaque da Semana'],
+    infos: ['Francês'],
     pontuacao: 4.1
   },
   {
@@ -49,7 +49,7 @@ const restaurantes: ClasseRestaurante[] = [
     titulo: 'Taste of Thailand',
     detalhes:
       'Embarque em uma viagem aos aromas exóticos e sabores vibrantes da Tailândia. Nossos pratos autênticos trazem a magia da culinária tailandesa. Taste of Thailand: uma explosão de sabores em cada prato',
-    infos: ['Japones', 'Destaque da Semana'],
+    infos: ['Thailandês'],
     pontuacao: 4.3
   },
   {
@@ -58,7 +58,7 @@ const restaurantes: ClasseRestaurante[] = [
     titulo: 'Alemanha Gourmet',
     detalhes:
       'Experimente o melhor da culinária alemã em um ambiente autêntico. Pratos tradicionais combinam sabores robustos e autênticos. Alemanha Gourmet: onde a tradição encontra o sabor em cada refeição.',
-    infos: ['Japones', 'Destaque da Semana'],
+    infos: ['Alemão', ' Destaque da Semana'],
     pontuacao: 4.8
   }
 ]

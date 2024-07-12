@@ -7,10 +7,16 @@ export const Restaurante = styled.div`
   background: ${cores.branco};
   max-width: 472px;
   width: 100%;
-  height: 398px;
   font-weight: 700;
   font-size: 14px;
   position: relative;
+  @media (max-width: 1024px) {
+    width: 92%;
+  }
+  @media (max-width: 576px) {
+    max-width: 400px;
+    width: 95%;
+  }
 `
 
 export const RestauranteImagem = styled.img`
@@ -21,9 +27,15 @@ export const RestauranteInformacoes = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 198px;
+  height: 220px;
   padding-left: 2%;
   border: 1px solid ${cores.vermelho};
+  @media (max-width: 1024px) {
+    height: 250px;
+  }
+  @media (max-width: 576px) {
+    height: 280px;
+  }
 `
 export const RestauranteTitulo = styled.h2`
   width: 80%;
@@ -50,14 +62,15 @@ export const RestauranteButton = styled.button`
   border: none;
   line-height: 16px;
   padding: 8px;
+  cursor: pointer;
   text-align: center;
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   left: 10px;
 `
 export const InfosContainer = styled.div`
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 10px;
   display: flex;
   gap: 20px;
@@ -76,7 +89,7 @@ export const Avaliacao = styled.div`
   height: 25px;
   position: absolute;
   right: 15px;
-  bottom: 165px;
+  bottom: 188px;
   div {
     font-size: 18px;
     margin-right: 10px;
@@ -84,5 +97,11 @@ export const Avaliacao = styled.div`
   }
   img {
     width: 20px;
+  }
+  @media (max-width: 1024px) {
+    bottom: 217px;
+  }
+  @media (max-width: 576px) {
+    bottom: 247px;
   }
 `

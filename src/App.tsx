@@ -1,13 +1,14 @@
 import Footer from './components/Footer'
-import Hero from './components/Hero'
-import Home from './components/pages/Home'
+import Header from './components/Header'
+import Home from './pages/Home'
+import Perfil from './pages/Perfil'
 import EstiloGlobal from './styles'
 function App() {
   return (
     <>
       <EstiloGlobal />
-      <Hero />
-      <Home />
+      <Header />
+      <Perfil />
       <Footer />
     </>
   )

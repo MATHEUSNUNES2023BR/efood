@@ -11,15 +11,15 @@ import {
   RestauranteTitulo
 } from './style'
 
-type Props = {
+export type Props = {
   image: string
   titulo: string
   detalhes: string
-  potuacao: number
+  pontuacao: number
   infos: string[]
 }
 
-const Restaurantes = ({ image, titulo, detalhes, potuacao, infos }: Props) => (
+const Restaurantes = ({ image, titulo, detalhes, pontuacao, infos }: Props) => (
   <Restaurante>
     <RestauranteImagem src={image} />
     <RestauranteInformacoes>
@@ -27,7 +27,7 @@ const Restaurantes = ({ image, titulo, detalhes, potuacao, infos }: Props) => (
       <RestauranteDetalhes>{detalhes}</RestauranteDetalhes>
       <RestauranteButton>Saiba mais</RestauranteButton>
       <Avaliacao>
-        <div>{potuacao}</div>
+        <div>{pontuacao}</div>
         <img src={estrela} alt="" />
       </Avaliacao>
       <InfosContainer>

@@ -17,6 +17,9 @@ export const FooterRedes = styled.div`
   display: flex;
   width: 150px;
   justify-content: space-around;
+  img {
+    cursor: pointer;
+  }
 `
 
 export const FooterRodape = styled.p`
