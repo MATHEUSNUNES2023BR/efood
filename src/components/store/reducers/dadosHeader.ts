@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Dados } from '../../Header'
-
-const initialState: Dados = {
-  categoria: '',
-  imagem: '',
-  nomeRestaurante: ''
+type DadoId = {
+  id: number
+}
+const initialState: DadoId = {
+  id: 0
 }
 const headerDados = createSlice({
   name: 'dados',
   initialState,
   reducers: {
-    capturar: (state, action: PayloadAction<Dados>) => {
+    capturar: (state, action: PayloadAction<DadoId>) => {
       state = action.payload
       return state
     }

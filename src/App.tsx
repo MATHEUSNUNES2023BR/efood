@@ -6,13 +6,13 @@ import { Provider } from 'react-redux'
 import store from './components/store'
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
         <EstiloGlobal />
         <Rotas />
         <Footer />
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   )
 }
 

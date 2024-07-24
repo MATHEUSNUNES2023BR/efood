@@ -59,7 +59,7 @@ export const HeaderApresentacao = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 300px;
+  padding-left: 24vw;
   &::before {
     content: '';
     position: absolute;

@@ -8,12 +8,16 @@ import {
 } from './styles'
 import logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
-export type Dados = {
-  categoria: string
-  nomeRestaurante: string
-  imagem: string
+export type Dado = {
+  tipo?: string
+  titulo?: string
+  capa?: string
+  id?: number
 }
-const Header = ({ categoria, nomeRestaurante, imagem }: Dados) => (
+export type DadosArray = {
+  dados: Dado
+}
+const Header = ({ dados }: DadosArray) => (
   <ContainerHeader>
     <HeaderNav>
       <HeaderUl>
@@ -29,9 +33,9 @@ const Header = ({ categoria, nomeRestaurante, imagem }: Dados) => (
       </HeaderUl>
     </HeaderNav>
 
-    <HeaderApresentacao Imagem={imagem}>
-      <HeaderApresentacaoCategoria>{categoria}</HeaderApresentacaoCategoria>
-      <HeaderApresentacaoNome>{nomeRestaurante}</HeaderApresentacaoNome>
+    <HeaderApresentacao Imagem={dados.capa}>
+      <HeaderApresentacaoCategoria>{dados.tipo}</HeaderApresentacaoCategoria>
+      <HeaderApresentacaoNome>{dados.titulo}</HeaderApresentacaoNome>
     </HeaderApresentacao>
   </ContainerHeader>
 )

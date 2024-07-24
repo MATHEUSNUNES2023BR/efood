@@ -13,39 +13,31 @@ import {
   RestauranteInformacoes,
   RestauranteTitulo
 } from './style'
+import { Estrutura } from '../store/reducers/consumoApi'
+type PropProduto = Omit<Estrutura, 'cardapio'>
 
-export type Props = {
-  image: string
-  titulo: string
-  detalhes: string
-  pontuacao: number
-  infos: string[]
-  categoria?: string
-}
 const Restaurantes = ({
-  image,
-  titulo,
-  detalhes,
-  pontuacao,
-  infos,
-  categoria
-}: Props) => {
+  id,
+  capa,
+  avaliacao,
+  descricao,
+  tipo,
+  titulo
+}: PropProduto) => {
   const dispatch = useDispatch()
 
   return (
     <Restaurante>
-      <RestauranteImagem src={image} />
+      <RestauranteImagem src={capa} />
       <RestauranteInformacoes>
         <RestauranteTitulo>{titulo}</RestauranteTitulo>
-        <RestauranteDetalhes>{detalhes}</RestauranteDetalhes>
-        <Link to="/produtos">
+        <RestauranteDetalhes>{descricao}</RestauranteDetalhes>
+        <Link to={`/produtos/${id}`}>
           <RestauranteButton
             onClick={() =>
               dispatch(
                 capturar({
-                  nomeRestaurante: titulo,
-                  imagem: image,
-                  categoria: categoria as string
+                  id: id
                 })
               )
             }
@@ -54,13 +46,11 @@ const Restaurantes = ({
           </RestauranteButton>
         </Link>
         <Avaliacao>
-          <div>{pontuacao}</div>
+          <div>{avaliacao}</div>
           <img src={estrela} alt="" />
         </Avaliacao>
         <InfosContainer>
-          {infos.map((info) => (
-            <Infos key={info}>{info}</Infos>
-          ))}
+          <Infos>{tipo}</Infos>
         </InfosContainer>
       </RestauranteInformacoes>
     </Restaurante>

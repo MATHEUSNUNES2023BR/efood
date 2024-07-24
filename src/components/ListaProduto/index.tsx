@@ -1,20 +1,28 @@
-import ClasseRestaurante from '../../models/ClasseRestaurante'
 import Produto from '../Produto'
 import { ContainerProduto } from './style'
-
-type Props = {
-  Produtos: ClasseRestaurante[]
-}
-const ListaProduto = ({ Produtos }: Props) => (
+type cardapioDados = [
+  {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
+  }
+]
+export type ArrayCardapio = { dadosArray: cardapioDados | undefined }
+const ListaProduto = ({ dadosArray }: ArrayCardapio) => (
   <ContainerProduto>
-    {Produtos.map((p) => (
-      <Produto
-        key={p.id}
-        image={p.image}
-        titulo={p.titulo}
-        detalhes={p.detalhes}
-      />
-    ))}
+    {dadosArray !== undefined
+      ? dadosArray.map((restaurante) => (
+          <Produto
+            key={restaurante.id}
+            capa={restaurante.foto}
+            titulo={restaurante.nome}
+            descricao={restaurante.descricao}
+          />
+        ))
+      : ''}
   </ContainerProduto>
 )
 

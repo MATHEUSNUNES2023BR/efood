@@ -1,21 +1,21 @@
 import Restaurantes from '../Restaurante'
-import ClasseRestaurante from '../../models/ClasseRestaurante'
+import { Estrutura } from '../store/reducers/consumoApi'
 import { ContainerRestaurantes } from './styles'
 
-type Props = {
-  restaurantes: ClasseRestaurante[]
-}
-const ListaRestaurante = ({ restaurantes }: Props) => (
+type PropProduto = Omit<Estrutura, 'cardapio'>
+type EstruturaEstaurante = { dadosRestaurante: PropProduto[] }
+
+const ListaRestaurante = ({ dadosRestaurante }: EstruturaEstaurante) => (
   <ContainerRestaurantes>
-    {restaurantes.map((r) => (
+    {dadosRestaurante.map((r) => (
       <Restaurantes
         key={r.id}
-        image={r.image}
+        capa={r.capa}
         titulo={r.titulo}
-        pontuacao={r.pontuacao as number}
-        detalhes={r.detalhes}
-        infos={r.infos as []}
-        categoria={r.categoria}
+        avaliacao={r.avaliacao as number}
+        descricao={r.descricao}
+        tipo={r.tipo}
+        id={r.id}
       />
     ))}
   </ContainerRestaurantes>

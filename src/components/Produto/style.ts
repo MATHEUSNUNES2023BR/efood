@@ -14,6 +14,7 @@ export const ProdutoContainer = styled(Restaurante)`
   padding: 0;
   background-color: ${cores.vermelho};
   max-width: 350px;
+  height: 500px;
   width: 100%;
   @media (max-width: 1024px) {
     width: 90%;
@@ -44,12 +45,12 @@ export const ProdutoButton = styled(RestauranteButton)`
   font-size: 16px;
   color: ${cores.vermelho};
   font-weight: bolder;
-  padding: 10px;
   border-radius: 4px;
-  position: inherit;
+  position: relative;
+  left: 0;
   display: block;
   width: 90%;
   margin: 0 auto;
-  margin-top: 20px;
+  top: 30px;
   background-color: ${cores.pessego_escuro};
 `

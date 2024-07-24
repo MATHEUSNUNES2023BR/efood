@@ -1,64 +1,32 @@
-import ClasseRestaurante from '../../models/ClasseRestaurante'
-import ListaProduto from '../../components/ListaProduto'
-import pizza from '../../assets/images/pizza.png'
-import Header from '../../components/Header'
-import { useSelector } from 'react-redux'
 import { RootReducer } from '../../components/store'
-const Produtos: ClasseRestaurante[] = [
-  {
-    id: 1,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 2,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 3,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 4,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 5,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 6,
-    image: pizza,
-    titulo: 'Pizza Marguerita',
-    detalhes:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  }
-]
+import { useSelector } from 'react-redux'
+import { Estrutura } from '../../components/store/reducers/consumoApi'
+import Header from '../../components/Header'
+import ListaProduto from '../../components/ListaProduto'
+import { useParams } from 'react-router-dom'
+
 const Perfil = () => {
-  const dados = useSelector(({ headerDados }: RootReducer) => headerDados)
+  const { id } = useParams()
+  const converteId = parseInt(id as unknown as string)
+  const dados = useSelector((state: RootReducer) => state.apiDados)
+  const dadosRestauranteSelecionado = dados.find((restaurente) => {
+    if (restaurente.id === converteId) {
+      return restaurente
+    }
+  })
+  const cardapioRestaurante = dadosRestauranteSelecionado?.cardapio
   return (
     <>
-      <Header
-        nomeRestaurante={dados.nomeRestaurante}
-        categoria={dados.categoria}
-        imagem={dados.imagem}
-      />
-      <ListaProduto Produtos={Produtos}></ListaProduto>
+      {dados.length === 0 ? (
+        <h1>carregando</h1>
+      ) : (
+        <>
+          <Header dados={dadosRestauranteSelecionado as Estrutura} />
+          <ListaProduto dadosArray={cardapioRestaurante} />
+        </>
+      )}
     </>
   )
 }
+
 export default Perfil

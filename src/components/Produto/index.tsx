@@ -6,17 +6,17 @@ import {
   ProdutoInformacoes,
   ProdutoTitulo
 } from './style'
-import { Props } from '../Restaurante'
-type PropProduto = Omit<Props, 'infos' | 'pontuacao'>
+import { Estrutura } from '../store/reducers/consumoApi'
+type PropProduto = Omit<Estrutura, 'tipo' | 'avaliacao' | 'id' | 'cardapio'>
 
-const Produto = ({ image, detalhes, titulo }: PropProduto) => (
+const Produto = ({ capa, descricao, titulo }: PropProduto) => (
   <ProdutoContainer>
-    <ProdutoImagem src={image} />
+    <ProdutoImagem src={capa} />
     <ProdutoInformacoes>
       <ProdutoTitulo>{titulo}</ProdutoTitulo>
-      <ProdutoDetalhes>{detalhes}</ProdutoDetalhes>
-      <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
+      <ProdutoDetalhes>{descricao}</ProdutoDetalhes>
     </ProdutoInformacoes>
+    <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
   </ProdutoContainer>
 )
 
