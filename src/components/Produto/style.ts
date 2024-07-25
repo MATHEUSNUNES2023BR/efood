@@ -35,7 +35,6 @@ export const ProdutoTitulo = styled(RestauranteTitulo)`
   padding-left: 10px;
   color: ${cores.pessego};
   width: 95%;
-  cursor: pointer;
 `
 export const ProdutoDetalhes = styled(RestauranteDetalhes)`
   padding-left: 10px;
