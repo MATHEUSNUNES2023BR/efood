@@ -22,7 +22,7 @@ const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
       <ProdutoButton
         onClick={() => dispatch(alterar({ estado: true, id: id }))}
       >
-        Mais detalhes
+        Adicionar ao carrinho
       </ProdutoButton>
     </ProdutoContainer>
   )
