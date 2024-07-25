@@ -1,10 +1,12 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import headerDados from './reducers/dadosHeader'
 import apiDados from './reducers/consumoApi'
+import modal from './reducers/modal'
 const store = configureStore({
   reducer: {
     headerDados,
-    apiDados
+    apiDados,
+    modal
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
 })

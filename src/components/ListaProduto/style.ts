@@ -12,4 +12,6 @@ export const ContainerProduto = styled(ContainerRestaurantes)`
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  position: relative;
+  z-index: -1;
 `

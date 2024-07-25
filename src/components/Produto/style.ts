@@ -18,11 +18,11 @@ export const ProdutoContainer = styled(Restaurante)`
   width: 100%;
   @media (max-width: 1024px) {
     width: 90%;
-    height: 390px;
+    height: 480px;
   }
   @media (max-width: 576px) {
     width: 90%;
-    height: 390px;
+    height: 490px;
   }
 `
 export const ProdutoImagem = styled(RestauranteImagem)`
@@ -35,6 +35,7 @@ export const ProdutoTitulo = styled(RestauranteTitulo)`
   padding-left: 10px;
   color: ${cores.pessego};
   width: 95%;
+  cursor: pointer;
 `
 export const ProdutoDetalhes = styled(RestauranteDetalhes)`
   padding-left: 10px;
@@ -53,4 +54,7 @@ export const ProdutoButton = styled(RestauranteButton)`
   margin: 0 auto;
   top: 30px;
   background-color: ${cores.pessego_escuro};
+  @media (max-width: 1024px) {
+    top: -15px;
+  }
 `
