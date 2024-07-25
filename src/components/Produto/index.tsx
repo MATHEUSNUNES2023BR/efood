@@ -16,14 +16,14 @@ const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
     <ProdutoContainer>
       <ProdutoImagem src={capa} />
       <ProdutoInformacoes>
-        <ProdutoTitulo
-          onClick={() => dispatch(alterar({ estado: true, id: id }))}
-        >
-          {titulo}
-        </ProdutoTitulo>
+        <ProdutoTitulo>{titulo}</ProdutoTitulo>
         <ProdutoDetalhes>{descricao}</ProdutoDetalhes>
       </ProdutoInformacoes>
-      <ProdutoButton>Adicionar ao carrinho</ProdutoButton>
+      <ProdutoButton
+        onClick={() => dispatch(alterar({ estado: true, id: id }))}
+      >
+        Mais detalhes
+      </ProdutoButton>
     </ProdutoContainer>
   )
 }
