@@ -1,17 +1,16 @@
-import { RootReducer } from '../../components/store'
-import { useSelector } from 'react-redux'
-import { Estrutura } from '../../components/store/reducers/consumoApi'
-import Header from '../../components/Header'
-import ListaProduto, { cardapioDados } from '../../components/ListaProduto'
+import { Estrutura } from '../Home'
 import { useParams } from 'react-router-dom'
 import { Modal } from '../../components/Modal'
 import Footer from '../../components/Footer'
+import { useGetBaseUrlQuery } from '../../components/services/api'
+import ListaProduto, { CardapioDados } from '../../components/ListaProduto'
+import Header from '../../components/Header'
 
 const Perfil = () => {
   const { id } = useParams()
   const converteId = parseInt(id as unknown as string)
-  const dados = useSelector((state: RootReducer) => state.apiDados)
-  const dadosRestauranteSelecionado = dados.find((restaurente) => {
+  const { data } = useGetBaseUrlQuery()
+  const dadosRestauranteSelecionado = data?.find((restaurente) => {
     if (restaurente.id === converteId) {
       return restaurente
     }
@@ -20,11 +19,11 @@ const Perfil = () => {
   const cardapioRestaurante = dadosRestauranteSelecionado?.cardapio
   return (
     <>
-      {dados.length === 0 ? (
+      {data?.length === 0 ? (
         <h1>Carregando...</h1>
       ) : (
         <>
-          <Modal cardapio={cardapioRestaurante as cardapioDados}>
+          <Modal cardapio={cardapioRestaurante as CardapioDados}>
             <Header dados={dadosRestauranteSelecionado as Estrutura} />
             <ListaProduto dadosArray={cardapioRestaurante} />
             <Footer />

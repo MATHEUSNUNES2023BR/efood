@@ -1,18 +1,39 @@
-import { useSelector } from 'react-redux'
-import { RootReducer } from '../../components/store'
 import Hero from '../../components/Hero'
 import ListaRestaurante from '../../components/ListaRestaurante'
 import Footer from '../../components/Footer'
+import { useGetBaseUrlQuery } from '../../components/services/api'
 
+export type Estrutura = {
+  id: number
+  titulo: string
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: [
+    {
+      foto: string
+      preco: number
+      id: number
+      nome: string
+      descricao: string
+      porcao: string
+    }
+  ]
+}
 const Home = () => {
-  const dados = useSelector((state: RootReducer) => state.apiDados)
-  return (
-    <>
-      <Hero />
-      <ListaRestaurante dadosRestaurante={dados} />
-      <Footer />
-    </>
-  )
+  const { data } = useGetBaseUrlQuery()
+
+  if (data) {
+    return (
+      <>
+        <Hero />
+        <ListaRestaurante dadosRestaurante={data!} />
+        <Footer />
+      </>
+    )
+  }
+  return <h4>Carregando...</h4>
 }
 
 export default Home

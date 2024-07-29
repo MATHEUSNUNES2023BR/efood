@@ -1,21 +1,15 @@
-import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
-import headerDados from './reducers/dadosHeader'
-import apiDados from './reducers/consumoApi'
+import { configureStore } from '@reduxjs/toolkit'
+import api from '../services/api'
+import dadosHeader from './reducers/dadosHeader'
 import modal from './reducers/modal'
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    headerDados,
-    apiDados,
-    modal
+    dadosHeader,
+    modal,
+    [api.reducerPath]: api.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware)
 })
+
 export type RootReducer = ReturnType<typeof store.getState>
-export default store
-export type AppDispatch = typeof store.dispatch
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootReducer,
-  unknown,
-  Action<string>
->

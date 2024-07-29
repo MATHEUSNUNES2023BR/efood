@@ -13,7 +13,7 @@ import {
   RestauranteInformacoes,
   RestauranteTitulo
 } from './style'
-import { Estrutura } from '../store/reducers/consumoApi'
+import { Estrutura } from '../../pages/Home'
 type PropProduto = Omit<Estrutura, 'cardapio'>
 
 const Restaurantes = ({

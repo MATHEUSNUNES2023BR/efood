@@ -6,7 +6,7 @@ import {
   ProdutoInformacoes,
   ProdutoTitulo
 } from './style'
-import { Estrutura } from '../store/reducers/consumoApi'
+import { Estrutura } from '../../pages/Home'
 import { useDispatch } from 'react-redux'
 import { alterar } from '../store/reducers/modal'
 type PropProduto = Omit<Estrutura, 'tipo' | 'avaliacao' | 'cardapio'>

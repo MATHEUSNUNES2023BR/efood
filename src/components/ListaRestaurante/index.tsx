@@ -1,5 +1,5 @@
 import Restaurantes from '../Restaurante'
-import { Estrutura } from '../store/reducers/consumoApi'
+import { Estrutura } from '../../pages/Home'
 import { ContainerRestaurantes } from './styles'
 
 type PropProduto = Omit<Estrutura, 'cardapio'>

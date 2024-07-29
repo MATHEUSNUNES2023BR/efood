@@ -10,16 +10,15 @@ import {
   ModalPorcao,
   ModalWrapper
 } from './style'
-import pizza from '../../assets/images/pizza.png'
-import close from '../../assets/images/close-svgrepo-com.svg'
+import close from '../../assets/images/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../store'
 import { alterar } from '../store/reducers/modal'
-import { cardapioDados } from '../ListaProduto'
+import { CardapioDados } from '../ListaProduto'
 
 type Prop = {
   children: JSX.Element[]
-  cardapio: cardapioDados
+  cardapio: CardapioDados
 }
 export const Modal = ({ children, cardapio }: Prop) => {
   const modalInfo = useSelector((state: RootReducer) => state.modal.estado)

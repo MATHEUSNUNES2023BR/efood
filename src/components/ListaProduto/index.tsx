@@ -1,6 +1,6 @@
 import Produto from '../Produto'
 import { ContainerProduto } from './style'
-export type cardapioDados = [
+export type CardapioDados = [
   {
     foto: string
     preco: number
@@ -10,7 +10,7 @@ export type cardapioDados = [
     porcao: string
   }
 ]
-export type ArrayCardapio = { dadosArray: cardapioDados | undefined }
+export type ArrayCardapio = { dadosArray: CardapioDados | undefined }
 const ListaProduto = ({ dadosArray }: ArrayCardapio) => (
   <ContainerProduto>
     {dadosArray !== undefined
