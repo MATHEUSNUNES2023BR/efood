@@ -8,7 +8,7 @@ import {
 } from './style'
 import { Estrutura } from '../../pages/Home'
 import { useDispatch } from 'react-redux'
-import { alterar } from '../store/reducers/modal'
+import { alterar, open } from '../store/reducers/modal'
 type PropProduto = Omit<Estrutura, 'tipo' | 'avaliacao' | 'cardapio'>
 const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
   const dispatch = useDispatch()
@@ -20,7 +20,9 @@ const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
         <ProdutoDetalhes>{descricao}</ProdutoDetalhes>
       </ProdutoInformacoes>
       <ProdutoButton
-        onClick={() => dispatch(alterar({ estado: true, id: id }))}
+        onClick={() => {
+          dispatch(alterar({ id: id })), dispatch(open())
+        }}
       >
         Adicionar ao carrinho
       </ProdutoButton>

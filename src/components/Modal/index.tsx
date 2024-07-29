@@ -10,10 +10,10 @@ import {
   ModalPorcao,
   ModalWrapper
 } from './style'
-import close from '../../assets/images/close.svg'
+import closeButton from '../../assets/images/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../store'
-import { alterar } from '../store/reducers/modal'
+import { close } from '../store/reducers/modal'
 import { CardapioDados } from '../ListaProduto'
 
 type Prop = {
@@ -25,13 +25,6 @@ export const Modal = ({ children, cardapio }: Prop) => {
   const modalId = useSelector((state: RootReducer) => state.modal.id)
   const dispatch = useDispatch()
   const cardapioSelecionado = [cardapio.find((c) => c.id === modalId)]
-  function VerificaClose() {
-    if (modalInfo) {
-      dispatch(alterar({ estado: false }))
-    } else {
-      dispatch(alterar({ estado: true }))
-    }
-  }
   return (
     <ModalBody>
       {children}
@@ -47,7 +40,7 @@ export const Modal = ({ children, cardapio }: Prop) => {
                 Adicionar ao carrinho <span>R${dados?.preco}</span>
               </ModalBotao>
             </ModalInformacoesContainer>
-            <ModalClose src={close} onClick={() => VerificaClose()} />
+            <ModalClose src={closeButton} onClick={() => dispatch(close())} />
           </ModalContainer>
         </ModalWrapper>
       ))}
