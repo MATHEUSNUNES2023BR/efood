@@ -13,12 +13,13 @@ import {
 import closeButton from '../../assets/images/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../store'
-import { close } from '../store/reducers/modal'
-import { CardapioDados } from '../ListaProduto'
+import { add, openCart } from '../store/reducers/cart'
+import { closeModal } from '../store/reducers/modal'
+import { ArrayCardapio } from '../ListaProduto'
 
 type Prop = {
   children: JSX.Element[]
-  cardapio: CardapioDados
+  cardapio: ArrayCardapio
 }
 export const Modal = ({ children, cardapio }: Prop) => {
   const modalInfo = useSelector((state: RootReducer) => state.modal.estado)
@@ -36,11 +37,20 @@ export const Modal = ({ children, cardapio }: Prop) => {
               <ModalNome>{dados?.nome}</ModalNome>
               <ModalDescricao>{dados?.descricao}</ModalDescricao>
               <ModalPorcao>Serve de: {dados?.porcao}</ModalPorcao>
-              <ModalBotao>
+              <ModalBotao
+                onClick={() => {
+                  dispatch(openCart()),
+                    dispatch(add(dados!)),
+                    dispatch(closeModal())
+                }}
+              >
                 Adicionar ao carrinho <span>R${dados?.preco}</span>
               </ModalBotao>
             </ModalInformacoesContainer>
-            <ModalClose src={closeButton} onClick={() => dispatch(close())} />
+            <ModalClose
+              src={closeButton}
+              onClick={() => dispatch(closeModal())}
+            />
           </ModalContainer>
         </ModalWrapper>
       ))}

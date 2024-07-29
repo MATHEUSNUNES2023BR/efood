@@ -3,34 +3,40 @@ import { useParams } from 'react-router-dom'
 import { Modal } from '../../components/Modal'
 import Footer from '../../components/Footer'
 import { useGetBaseUrlQuery } from '../../components/services/api'
-import ListaProduto, { CardapioDados } from '../../components/ListaProduto'
+import ListaProduto, { ArrayCardapio } from '../../components/ListaProduto'
 import Header from '../../components/Header'
+import Cart from '../../components/Cart'
 
 const Perfil = () => {
   const { id } = useParams()
-  const converteId = parseInt(id as unknown as string)
-  const { data } = useGetBaseUrlQuery()
-  const dadosRestauranteSelecionado = data?.find((restaurente) => {
-    if (restaurente.id === converteId) {
-      return restaurente
-    }
-  })
+  const converteId = parseInt(id as unknown as string, 10)
+  const { data, isLoading } = useGetBaseUrlQuery()
 
-  const cardapioRestaurante = dadosRestauranteSelecionado?.cardapio
+  if (isLoading) {
+    return <h1>Carregando...</h1>
+  }
+
+  if (!data) {
+    return <h1>Erro ao carregar dados</h1>
+  }
+
+  const dadosRestauranteSelecionado = data.find(
+    (restaurante) => restaurante.id === converteId
+  )
+
+  if (!dadosRestauranteSelecionado) {
+    return <h1>Restaurante não encontrado</h1>
+  }
+
+  const cardapioRestaurante = dadosRestauranteSelecionado.cardapio
+
   return (
-    <>
-      {data?.length === 0 ? (
-        <h1>Carregando...</h1>
-      ) : (
-        <>
-          <Modal cardapio={cardapioRestaurante as CardapioDados}>
-            <Header dados={dadosRestauranteSelecionado as Estrutura} />
-            <ListaProduto dadosArray={cardapioRestaurante} />
-            <Footer />
-          </Modal>
-        </>
-      )}
-    </>
+    <Modal cardapio={cardapioRestaurante as ArrayCardapio}>
+      <Header dados={dadosRestauranteSelecionado as Estrutura} />
+      <ListaProduto produtos={cardapioRestaurante} />
+      <Footer />
+      <Cart />
+    </Modal>
   )
 }
 

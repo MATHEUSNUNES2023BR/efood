@@ -15,15 +15,15 @@ const modalEstado = createSlice({
       state.id = action.payload.id
       return state
     },
-    open: (state) => {
+    openModal: (state) => {
       state.estado = true
       return state
     },
-    close: (state) => {
+    closeModal: (state) => {
       state.estado = false
       return state
     }
   }
 })
-export const { alterar, open, close } = modalEstado.actions
+export const { alterar, openModal, closeModal } = modalEstado.actions
 export default modalEstado.reducer

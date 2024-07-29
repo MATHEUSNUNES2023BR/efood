@@ -8,7 +8,7 @@ import {
 } from './style'
 import { Estrutura } from '../../pages/Home'
 import { useDispatch } from 'react-redux'
-import { alterar, open } from '../store/reducers/modal'
+import { alterar, openModal } from '../store/reducers/modal'
 type PropProduto = Omit<Estrutura, 'tipo' | 'avaliacao' | 'cardapio'>
 const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
   const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const Produto = ({ capa, descricao, titulo, id }: PropProduto) => {
       </ProdutoInformacoes>
       <ProdutoButton
         onClick={() => {
-          dispatch(alterar({ id: id })), dispatch(open())
+          dispatch(alterar({ id: id })), dispatch(openModal())
         }}
       >
         Adicionar ao carrinho
