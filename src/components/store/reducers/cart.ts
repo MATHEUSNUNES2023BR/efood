@@ -19,8 +19,14 @@ const cartSlice = createSlice({
       state.items.push(action.payload)
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload)
+      const index = state.items.findIndex(
+        (item: { id: number }) => item.id === action.payload
+      )
+      if (index !== -1) {
+        state.items.splice(index, 1)
+      }
     },
+
     openCart: (state) => {
       state.isOpen = true
     },

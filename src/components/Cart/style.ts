@@ -1,5 +1,4 @@
 import { styled } from 'styled-components'
-import fechar from '../../assets/images/close.svg'
 import { cores } from '../../styles'
 export const Overlay = styled.div`
   position: absolute;
@@ -73,24 +72,27 @@ export const Quatity = styled.p`
 export const CartItem = styled.li`
   display: flex;
   border-bottom: 1px solid ${cores.pessego_escuro};
-  padding: 8px 0;
+  padding: 8px;
   position: relative;
+  margin-top: 15px;
+  background-color: ${cores.pessego_escuro};
   img {
     height: 80px;
     width: 80px;
     object-fit: cover;
-    margin-right: 24px;
+    margin-right: 16px;
   }
   h3 {
-    color: ${cores.branco};
+    color: ${cores.vermelho};
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
   }
   span {
     display: block;
-    color: ${cores.branco};
+    margin-top: 20px;
+    color: ${cores.vermelho};
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
   }
   button {
     width: 16px;
@@ -98,8 +100,8 @@ export const CartItem = styled.li`
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 8px;
-    right: 0;
+    top: 50px;
+    right: 10px;
     img {
       width: 16px;
       height: 16px;

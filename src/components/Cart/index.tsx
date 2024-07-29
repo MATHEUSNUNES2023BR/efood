@@ -9,7 +9,7 @@ import {
 } from './style'
 import { RootReducer } from '../store'
 import { closeCart, remove } from '../store/reducers/cart'
-import fechar from '../../assets/images/close.svg'
+import fechar from '../../assets/images/lixeira.png'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
