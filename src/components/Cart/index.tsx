@@ -8,27 +8,34 @@ import {
   SideBar
 } from './style'
 import { RootReducer } from '../store'
-import { closeCart, remove } from '../store/reducers/cart'
+import {
+  closeCart,
+  openEndereco,
+  remove,
+  precoTotal as preco
+} from '../store/reducers/cart'
 import fechar from '../../assets/images/lixeira.png'
-
+import { useEffect } from 'react'
 const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { isOpenCart, items, precoTotal } = useSelector(
+    (state: RootReducer) => state.cart
+  )
   const dispatch = useDispatch()
   const closeCartNow = () => {
     dispatch(closeCart())
   }
-  const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.preco!)
-    }, 0)
-  }
-
   const removeItem = (id: number) => {
     dispatch(remove(id))
+    dispatch(preco())
   }
+  useEffect(() => {
+    if (precoTotal === 0 && isOpenCart) {
+      dispatch(closeCart())
+    }
+  }, [precoTotal, isOpenCart, dispatch])
 
   return (
-    <CartContainer className={isOpen ? 'is-open' : ''}>
+    <CartContainer className={isOpenCart ? 'is-open' : ''}>
       <Overlay onClick={closeCartNow} />
       <SideBar>
         <ul>
@@ -47,9 +54,15 @@ const Cart = () => {
         </ul>
         <Quatity>{items.length} produtos(s) no carrinho</Quatity>
         <Prices>
-          Valor total <span> R$ {getTotalPrice().toFixed(2)}</span>
+          Valor total <span> R$ {precoTotal.toFixed(2)}</span>
         </Prices>
-        <button type={'button'} title="Clique no botão para comprar">
+        <button
+          type={'button'}
+          title="Clique no botão para comprar"
+          onClick={() => {
+            dispatch(closeCart()), dispatch(openEndereco())
+          }}
+        >
           Continuar com a compra
         </button>
       </SideBar>

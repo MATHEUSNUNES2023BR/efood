@@ -6,6 +6,9 @@ import { useGetBaseUrlQuery } from '../../components/services/api'
 import ListaProduto, { ArrayCardapio } from '../../components/ListaProduto'
 import Header from '../../components/Header'
 import Cart from '../../components/Cart'
+import EnderecoPagamento from '../../components/Pagamento/Endereco'
+import DadosCartao from '../../components/Pagamento/DadosCartao'
+import MesagemFinal from '../../components/Pagamento/MensagemFinal'
 
 const Perfil = () => {
   const { id } = useParams()
@@ -36,6 +39,9 @@ const Perfil = () => {
       <ListaProduto produtos={cardapioRestaurante} />
       <Footer />
       <Cart />
+      <EnderecoPagamento />
+      <DadosCartao />
+      <MesagemFinal />
     </Modal>
   )
 }

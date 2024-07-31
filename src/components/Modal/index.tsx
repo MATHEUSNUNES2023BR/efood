@@ -13,7 +13,7 @@ import {
 import closeButton from '../../assets/images/close.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../store'
-import { add, openCart } from '../store/reducers/cart'
+import { add, openCart, precoTotal } from '../store/reducers/cart'
 import { closeModal } from '../store/reducers/modal'
 import { ArrayCardapio } from '../ListaProduto'
 
@@ -41,7 +41,8 @@ export const Modal = ({ children, cardapio }: Prop) => {
                 onClick={() => {
                   dispatch(openCart()),
                     dispatch(add(dados!)),
-                    dispatch(closeModal())
+                    dispatch(closeModal()),
+                    dispatch(precoTotal())
                 }}
               >
                 Adicionar ao carrinho <span>R${dados?.preco}</span>
