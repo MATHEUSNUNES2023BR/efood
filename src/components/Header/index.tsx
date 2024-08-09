@@ -8,9 +8,9 @@ import {
 } from './styles'
 import logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootReducer } from '../store'
-import { openCart, openEndereco, openPayament } from '../store/reducers/cart'
+import { openProduto } from '../store/reducers/cart'
 export type Dado = {
   tipo?: string
   titulo?: string
@@ -21,26 +21,8 @@ export type DadosArray = {
   dados: Dado
 }
 const Header = ({ dados }: DadosArray) => {
-  const { items, lastClosedSection } = useSelector(
-    (state: RootReducer) => state.cart
-  )
-  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootReducer) => state.cart)
 
-  function abrirUltimaSecao() {
-    switch (lastClosedSection) {
-      case 'Cart':
-        dispatch(openCart())
-        break
-      case 'Endereco':
-        dispatch(openEndereco())
-        break
-      case 'Payment':
-        dispatch(openPayament())
-        break
-      default:
-        return ''
-    }
-  }
   return (
     <ContainerHeader>
       <HeaderNav>
@@ -52,7 +34,7 @@ const Header = ({ dados }: DadosArray) => {
             <img src={logo} alt="" />
           </li>
           <li className="carrinho">
-            <div onClick={abrirUltimaSecao}>
+            <div onClick={() => openProduto()}>
               {items.length} produto(s) no carrinho
             </div>
           </li>

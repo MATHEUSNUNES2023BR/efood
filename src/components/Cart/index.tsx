@@ -10,9 +10,9 @@ import {
 import { RootReducer } from '../store'
 import {
   closeCart,
-  openEndereco,
   remove,
-  precoTotal as preco
+  precoTotal as preco,
+  openProduto
 } from '../store/reducers/cart'
 import fechar from '../../assets/images/lixeira.png'
 import { useEffect } from 'react'
@@ -60,7 +60,7 @@ const Cart = () => {
           type={'button'}
           title="Clique no botão para comprar"
           onClick={() => {
-            dispatch(closeCart()), dispatch(openEndereco())
+            dispatch(closeCart()), dispatch(openProduto())
           }}
         >
           Continuar com a compra

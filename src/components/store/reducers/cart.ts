@@ -4,23 +4,17 @@ import { CardapioDados } from '../../ListaProduto'
 type CartState = {
   items: CardapioDados[]
   isOpenCart: boolean
-  isOpenEndereco: boolean
-  isOpenPayment: boolean
-  isOpenMesage: boolean
+  isOpenProdutos: boolean
   precoTotal: number
   hash: number | null
-  lastClosedSection: string | null // Última seção fechada
 }
 
 const initialState: CartState = {
   items: [],
   isOpenCart: false,
-  isOpenEndereco: false,
-  isOpenPayment: false,
-  isOpenMesage: false,
+  isOpenProdutos: false,
   precoTotal: 0,
-  hash: null,
-  lastClosedSection: null
+  hash: null
 }
 
 const cartSlice = createSlice({
@@ -52,31 +46,13 @@ const cartSlice = createSlice({
     },
     closeCart: (state) => {
       state.isOpenCart = false
-      state.lastClosedSection = 'Cart'
+    },
+    openProduto: (state) => {
+      state.isOpenProdutos = true
     },
 
-    openEndereco: (state) => {
-      state.isOpenEndereco = true
-    },
-    closeEndereco: (state) => {
-      state.isOpenEndereco = false
-      state.lastClosedSection = 'Endereco'
-    },
-
-    openPayament: (state) => {
-      state.isOpenPayment = true
-    },
-    closePayament: (state) => {
-      state.isOpenPayment = false
-      state.lastClosedSection = 'Payment'
-    },
-
-    openMesage: (state) => {
-      state.isOpenMesage = true
-    },
-    closeMesage: (state) => {
-      state.isOpenMesage = false
-      state.lastClosedSection = 'Mesage'
+    closeProduto: (state) => {
+      state.isOpenProdutos = false
     },
 
     gerarHashELimpar: (state) => {
@@ -93,14 +69,10 @@ export const {
   closeCart,
   remove,
   precoTotal,
-  openEndereco,
-  closeEndereco,
-  openPayament,
-  closePayament,
-  openMesage,
-  closeMesage,
   limpar,
-  gerarHashELimpar
+  gerarHashELimpar,
+  openProduto,
+  closeProduto
 } = cartSlice.actions
 
 export default cartSlice.reducer
