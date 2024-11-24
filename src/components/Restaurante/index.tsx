@@ -32,7 +32,7 @@ const Restaurantes = ({
       <RestauranteInformacoes>
         <RestauranteTitulo>{titulo}</RestauranteTitulo>
         <RestauranteDetalhes>{descricao}</RestauranteDetalhes>
-        <Link to={`/produtos/${id}`}>
+        <Link to={`/restaurante/${id}`}>
           <RestauranteButton
             onClick={() =>
               dispatch(

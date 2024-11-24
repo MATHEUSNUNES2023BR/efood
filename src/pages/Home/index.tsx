@@ -1,7 +1,7 @@
 import Hero from '../../components/Hero'
 import ListaRestaurante from '../../components/ListaRestaurante'
 import Footer from '../../components/Footer'
-import { useGetBaseUrlQuery } from '../../components/services/api'
+import { useGetRestaurantsQuery } from '../../components/services/api'
 
 export type Estrutura = {
   id: number
@@ -22,8 +22,8 @@ export type Estrutura = {
   ]
 }
 const Home = () => {
-  const { data } = useGetBaseUrlQuery()
-
+  const { data } = useGetRestaurantsQuery()
+  console.log(data)
   if (data) {
     return (
       <>

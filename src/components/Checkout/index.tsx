@@ -17,8 +17,10 @@ import { RootReducer } from '../store'
 import {
   closeProduto,
   gerarHashELimpar,
-  openCart
+  openCart,
+  zerarPreco
 } from '../store/reducers/cart'
+import { PurchasePayload, usePurchaseMutation } from '../services/api'
 
 // Esquema de validação para endereço
 const EnderecoSchema = Yup.object().shape({
@@ -78,6 +80,7 @@ const formatYear = (value: string) => {
 }
 
 const Checkout = () => {
+  const [purchase, { isSuccess, data }] = usePurchaseMutation()
   const { precoTotal, hash, isOpenProdutos } = useSelector(
     (state: RootReducer) => state.cart
   )
@@ -93,7 +96,6 @@ const Checkout = () => {
   const handlePreviousStep = () => {
     setCurrentStep((prevStep) => prevStep - 1)
   }
-
   return (
     <CheckoutContainer className={isOpenProdutos ? 'is-open' : ''}>
       <Overlay />
@@ -114,13 +116,48 @@ const Checkout = () => {
         validationSchema={currentStep === 1 ? EnderecoSchema : CartaoSchema}
         validateOnChange={false}
         validateOnBlur={false}
-        onSubmit={(values) => {
+        onSubmit={async (data) => {
           if (currentStep === 2) {
-            // Finalizar pagamento
-          } else if (currentStep === 3) {
-            // Lógica para quando o pedido é concluído
-            console.log('Formulário enviado:', values)
-            // Coloque aqui qualquer ação adicional que precise ser realizada
+            const payload: PurchasePayload = {
+              products: [
+                {
+                  id: 1, // Defina um ID fixo ou modifique conforme necessário
+                  price: Number(precoTotal.toFixed(2)), // Ajuste o preço conforme necessário
+                },
+              ],
+              delivery: {
+                receiver: data.quemRecebe, // Nome do destinatário
+                address: {
+                  description: data.endereco, // Endereço
+                  city: data.cidade, // Cidade
+                  zipCode: data.cep, // CEP
+                  number: Number(data.numero), // Número da casa (convertido para número)
+                  complement: data.complemento || undefined, // Complemento (opcional)
+                },
+              },
+              payment: {
+                card: {
+                  name: data.nomeCartao, // Nome no cartão
+                  number: data.numeroCartao.replace(/\s+/g, ""), // Remove espaços do número do cartão
+                  code: Number(data.cvv), // CVV (convertido para número)
+                  expires: {
+                    month: Number(data.mesVencimento), // Mês de vencimento (convertido para número)
+                    year: Number(data.anoVencimento), // Ano de vencimento (convertido para número)
+                  },
+                },
+              },
+            };
+            try {
+              const response = await purchase(payload).unwrap();
+              dispatch(gerarHashELimpar(response.orderId))
+              handleNextStep(true);
+            } catch (err) {
+              console.error('Erro na mutação:', err);
+            }
+            dispatch(zerarPreco())
+          }
+          else if (currentStep === 3) {
+            dispatch(closeProduto()), setCurrentStep(1)
           }
         }}
       >
@@ -263,16 +300,21 @@ const Checkout = () => {
                 </CarDadosCartao_2>
                 <ContainerButton>
                   <CardButton
-                    type="button"
                     disabled={isSubmitting}
-                    onClick={() => {
+                    type="button" // Alteramos para "button" para controlar manualmente o envio
+                    onClick={(e) => {
+                      const target = e.target as HTMLElement;
                       validateForm().then((errors) => {
                         if (Object.keys(errors).length === 0) {
-                          handleNextStep(true), dispatch(gerarHashELimpar())
+                          // Envia o formulário relacionado ao botão
+                          const formElement = target.closest('form');
+                          if (formElement) {
+                            formElement.requestSubmit(); // Envia o formulário manualmente
+                          }
                         } else {
-                          handleNextStep(false)
+                          handleNextStep(false);
                         }
-                      })
+                      });
                     }}
                   >
                     Finalizar pagamento
@@ -306,12 +348,7 @@ const Checkout = () => {
                   experiência gastronômica. Bom apetite!
                 </p>
                 <ContainerButton>
-                  <CardButton
-                    type="submit"
-                    onClick={() => {
-                      dispatch(closeProduto()), setCurrentStep(1)
-                    }}
-                  >
+                  <CardButton type="submit">
                     Concluir
                   </CardButton>
                 </ContainerButton>

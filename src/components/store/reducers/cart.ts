@@ -6,7 +6,7 @@ type CartState = {
   isOpenCart: boolean
   isOpenProdutos: boolean
   precoTotal: number
-  hash: number | null
+  hash: string | null
 }
 
 const initialState: CartState = {
@@ -14,7 +14,7 @@ const initialState: CartState = {
   isOpenCart: false,
   isOpenProdutos: false,
   precoTotal: 0,
-  hash: null
+  hash: '',
 }
 
 const cartSlice = createSlice({
@@ -55,9 +55,11 @@ const cartSlice = createSlice({
       state.isOpenProdutos = false
     },
 
-    gerarHashELimpar: (state) => {
-      state.hash = Math.floor(100000 + Math.random() * 900000)
+    gerarHashELimpar: (state, action) => {
+      state.hash = action.payload
       state.items = []
+    },
+    zerarPreco: (state) => {
       state.precoTotal = 0
     }
   }
@@ -69,6 +71,7 @@ export const {
   closeCart,
   remove,
   precoTotal,
+  zerarPreco,
   limpar,
   gerarHashELimpar,
   openProduto,
