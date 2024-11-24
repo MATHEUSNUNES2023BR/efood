@@ -14,7 +14,7 @@ const initialState: CartState = {
   isOpenCart: false,
   isOpenProdutos: false,
   precoTotal: 0,
-  hash: '',
+  hash: ''
 }
 
 const cartSlice = createSlice({

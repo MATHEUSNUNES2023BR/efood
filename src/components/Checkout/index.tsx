@@ -122,8 +122,8 @@ const Checkout = () => {
               products: [
                 {
                   id: 1, // Defina um ID fixo ou modifique conforme necessário
-                  price: Number(precoTotal.toFixed(2)), // Ajuste o preço conforme necessário
-                },
+                  price: Number(precoTotal.toFixed(2)) // Ajuste o preço conforme necessário
+                }
               ],
               delivery: {
                 receiver: data.quemRecebe, // Nome do destinatário
@@ -132,31 +132,30 @@ const Checkout = () => {
                   city: data.cidade, // Cidade
                   zipCode: data.cep, // CEP
                   number: Number(data.numero), // Número da casa (convertido para número)
-                  complement: data.complemento || undefined, // Complemento (opcional)
-                },
+                  complement: data.complemento || undefined // Complemento (opcional)
+                }
               },
               payment: {
                 card: {
                   name: data.nomeCartao, // Nome no cartão
-                  number: data.numeroCartao.replace(/\s+/g, ""), // Remove espaços do número do cartão
+                  number: data.numeroCartao.replace(/\s+/g, ''), // Remove espaços do número do cartão
                   code: Number(data.cvv), // CVV (convertido para número)
                   expires: {
                     month: Number(data.mesVencimento), // Mês de vencimento (convertido para número)
-                    year: Number(data.anoVencimento), // Ano de vencimento (convertido para número)
-                  },
-                },
-              },
-            };
+                    year: Number(data.anoVencimento) // Ano de vencimento (convertido para número)
+                  }
+                }
+              }
+            }
             try {
-              const response = await purchase(payload).unwrap();
+              const response = await purchase(payload).unwrap()
               dispatch(gerarHashELimpar(response.orderId))
-              handleNextStep(true);
+              handleNextStep(true)
             } catch (err) {
-              console.error('Erro na mutação:', err);
+              console.error('Erro na mutação:', err)
             }
             dispatch(zerarPreco())
-          }
-          else if (currentStep === 3) {
+          } else if (currentStep === 3) {
             dispatch(closeProduto()), setCurrentStep(1)
           }
         }}
@@ -303,18 +302,18 @@ const Checkout = () => {
                     disabled={isSubmitting}
                     type="button" // Alteramos para "button" para controlar manualmente o envio
                     onClick={(e) => {
-                      const target = e.target as HTMLElement;
+                      const target = e.target as HTMLElement
                       validateForm().then((errors) => {
                         if (Object.keys(errors).length === 0) {
                           // Envia o formulário relacionado ao botão
-                          const formElement = target.closest('form');
+                          const formElement = target.closest('form')
                           if (formElement) {
-                            formElement.requestSubmit(); // Envia o formulário manualmente
+                            formElement.requestSubmit() // Envia o formulário manualmente
                           }
                         } else {
-                          handleNextStep(false);
+                          handleNextStep(false)
                         }
-                      });
+                      })
                     }}
                   >
                     Finalizar pagamento
@@ -348,9 +347,7 @@ const Checkout = () => {
                   experiência gastronômica. Bom apetite!
                 </p>
                 <ContainerButton>
-                  <CardButton type="submit">
-                    Concluir
-                  </CardButton>
+                  <CardButton type="submit">Concluir</CardButton>
                 </ContainerButton>
               </Card>
             )}
